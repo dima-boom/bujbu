@@ -1,0 +1,5 @@
+pyTelegramBotAPI
+requests
+vk_api
+vk_captchasolver
+pyautogui
