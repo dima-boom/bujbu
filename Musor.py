@@ -419,4 +419,5 @@ try:
 			pass
 
 	bot.polling(none_stop=True)
-os.system('python Musor.py')
+except:
+	os.system('python Musor.py')
