@@ -1,4 +1,4 @@
-import telebot, pyautogui, os, time, vk_api, vk_captchasolver as vc, random, requests as r
+import telebot, os, time, vk_api, vk_captchasolver as vc, random, requests as r
 #os.system("cls")
 
 
