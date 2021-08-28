@@ -61,6 +61,7 @@ try:
 
 	@bot.message_handler(content_types=["text"])
 	def send_text(message):
+		global mailing
 		nickname = message.chat.username # Ник юзера
 		name = message.chat.first_name # Имя
 		id = message.chat.id # Айди
