@@ -3,7 +3,7 @@ try:
 	#os.system("cls")
 
 
-	bot = telebot.TeleBot("1957316086:AAGIG3qHjC9MReJV9r58QLTgIUgNudTP8do")
+	bot = telebot.TeleBot("1968911922:AAGFPgF-AXCwDSUzojrxhAqu1xz_THZemvI")
 
 	def msg(id, text, kb, pm=None):
 		send = bot.send_message(id, str(text), reply_markup=kb, parse_mode=pm)
