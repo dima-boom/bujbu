@@ -44,10 +44,10 @@ try:
 	kb_back.row("Отмена")
 
 	configs = {"868535514": ["token", "text"],
-			   "1455683626": ["token", "text"]}
+			   "1950131532": ["token", "text"]}
 	mailing_sbor = {"868535514": {"token": None,
 								  "text": None},
-					"1455683626": {"token": None,
+					"1950131532": {"token": None,
 								  "text": None}}
 	last_mailing = {"success": 0,
 					"fail": 0,
@@ -66,7 +66,7 @@ try:
 		name = message.chat.first_name # Имя
 		id = message.chat.id # Айди
 		text = message.text # Текст сообщения
-		if str(id) in ["868535514", "1455683626"]:
+		if str(id) in ["868535514", "1950131532"]:
 			if text == "/start":
 				msg(id, "Воспользуйся клавиатурой:", kb)
 			elif text == "Конфиг📂":
