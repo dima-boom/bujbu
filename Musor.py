@@ -43,9 +43,9 @@ try:
 	kb_back = reply_keyboard()
 	kb_back.row("Отмена")
 
-	configs = {"868535514": ["token", "text"],
+	configs = {"770430694": ["token", "text"],
 			   "1950131532": ["token", "text"]}
-	mailing_sbor = {"868535514": {"token": None,
+	mailing_sbor = {"770430694": {"token": None,
 								  "text": None},
 					"1950131532": {"token": None,
 								  "text": None}}
@@ -66,7 +66,7 @@ try:
 		name = message.chat.first_name # Имя
 		id = message.chat.id # Айди
 		text = message.text # Текст сообщения
-		if str(id) in ["868535514", "1950131532"]:
+		if str(id) in ["770430694", "1950131532"]:
 			if text == "/start":
 				msg(id, "Воспользуйся клавиатурой:", kb)
 			elif text == "Конфиг📂":
