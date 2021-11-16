@@ -123,7 +123,7 @@ try:
 						try:
 							vk_session = vk_api.VkApi(token=token)
 							vk = vk_session.get_api()
-							aaaaa = vk.status.get(user_id=685062634)["text"]
+	
 							mailing_sbor[str(id)]["token"] = token
 							msg(id, "✅*В рассылки будет использоваться записанный токен*", kb, pm="Markdown")
 							break
