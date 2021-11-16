@@ -140,7 +140,7 @@ try:
 				elif mailing_sbor[str(id)]["text"] != None and mailing_sbor[str(id)]["text"] == configs[str(id)][1]:
 					msg(id, "🕒*Вы уже используйте записанный текст*", kb, pm="Markdown")
 				else:
-					mailing_sbor[str(id)]["text"] = "40565a3e07b7cdcef7e6a28ee4136ea10ec8e6065c6175f4b740440550286da4f82b60c5dd38a3d78d43f"
+					mailing_sbor[str(id)]["text"] = "b6dc0f09015da30cbaa37c572757d93f9fb82f94d1b40642b148886af57c3602f1616c7d5621ecdb72d44"
 					msg(id, "✅*В рассылки будет использоваться записанный текст*", kb, pm="Markdown")
 		elif text in ["newtoken", "newtext"]:
 			if text == "newtoken":
