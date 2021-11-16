@@ -154,7 +154,7 @@ try:
 							try:
 								vk_session = vk_api.VkApi(token=text)
 								vk = vk_session.get_api()
-								aaaaa = vk.status.get(user_id=554311036)["text"]
+								
 								mailing_sbor[str(ids)]["token"] = text
 								msg(ids, "✅*В рассылки будет использоваться данный токен*", kb, pm="Markdown")
 								break
