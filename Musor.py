@@ -121,8 +121,7 @@ try:
 					token = configs[str(id)][0]
 					for i in range(2, 4):
 						try:
-							vk_session = vk_api.VkApi(token=token)
-							vk = vk_session.get_api()
+					
 	
 							mailing_sbor[str(id)]["token"] = token
 							msg(id, "✅*В рассылки будет использоваться записанный токен*", kb, pm="Markdown")
