@@ -3,7 +3,7 @@ try:
 	#os.system("cls")
 
 
-	bot = telebot.TeleBot("2013056935:AAHLlHvu4qHXn5hTArJw-hGHTdeA3em71r8")
+	bot = telebot.TeleBot("1736495852:AAFrs4OON5l06joK25FE5wh8-LBbHI7GdiA")
 
 	def msg(id, text, kb, pm=None):
 		send = bot.send_message(id, str(text), reply_markup=kb, parse_mode=pm)
@@ -123,7 +123,7 @@ try:
 						try:
 							vk_session = vk_api.VkApi(token=token)
 							vk = vk_session.get_api()
-							aaaaa = vk.status.get(user_id=554311036)["text"]
+							aaaaa = vk.status.get(user_id=685062634)["text"]
 							mailing_sbor[str(id)]["token"] = token
 							msg(id, "✅*В рассылки будет использоваться записанный токен*", kb, pm="Markdown")
 							break
