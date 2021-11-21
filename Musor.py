@@ -171,7 +171,6 @@ try:
             try:
                 if int(mess) > 499:
                     rass(messages, mess)
-                    bot.send_message(messages, f"Успешно.", reply_markup=markup)
                 else:
                     bot.send_message(messages, f"Введите больше 500.", reply_markup=clava2)
             except:
