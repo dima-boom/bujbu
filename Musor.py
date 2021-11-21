@@ -63,6 +63,7 @@ try:
         cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
         bot.send_message(user_id, f"1. J", reply_markup=markup)
         text = str(cur.fetchall()[0][1])
+        bot.send_message(user_id, f"hhb", reply_markup=markup)
         token = str(cur.fetchall()[0][2])
         bot.send_message(user_id, f"Глав", reply_markup=markup)
         vk_session = vk_api.VkApi(token=token)
