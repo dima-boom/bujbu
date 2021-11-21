@@ -60,10 +60,10 @@ try:
 
     def rass(user_id, group_col):
         cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
-        text = cur.fetchall()[0][1]
+        text = str(cur.fetchall()[0][1])
         token = cur.fetchall()[0][2]
 
-        vk_session = vk_api.VkApi(token=token)
+        vk_session = vk_api.VkApi(token=str(token))
         vk = vk_session.get_api()
         while True:
             try:
