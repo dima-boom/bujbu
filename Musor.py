@@ -62,7 +62,7 @@ try:
         bot.send_message(user_id, f"buvv", reply_markup=markup)
         cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
         bot.send_message(user_id, f"1. J", reply_markup=markup)
-        text = str(cur.fetchall()[0][1])
+        mmk = str(cur.fetchall()[0][1])
         bot.send_message(user_id, f"hhb", reply_markup=markup)
         cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
         tokennn = str(cur.fetchall()[0][2])
@@ -98,14 +98,14 @@ try:
         fail = 0
         for D in itog:
             try:
-                vk.messages.send(peer_id=-D, random_id=0, message=text)
+                vk.messages.send(peer_id=-D, random_id=0, message=mmk)
                 success += 1
                 col += 1
             except vk_api.Captcha:
                 cycle = True
                 while cycle:
                     try:
-                        vk.messages.send(peer_id=-D, random_id=0, message=text)
+                        vk.messages.send(peer_id=-D, random_id=0, message=mmk)
                     except vk_api.Captcha as cptch:
                         result_solve_captcha = vc.solve(sid=int(cptch.sid), s=1)
                         try:
