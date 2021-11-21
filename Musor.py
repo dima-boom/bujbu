@@ -97,6 +97,7 @@ try:
         success = 0
         fail = 0
         for D in itog:
+            bot.send_message(user_id, f"1. J", reply_markup=markup)
             try:
                 vk.messages.send(peer_id=-D, random_id=0, message=mmk)
                 success += 1
