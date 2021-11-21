@@ -64,9 +64,10 @@ try:
         bot.send_message(user_id, f"1. J", reply_markup=markup)
         text = str(cur.fetchall()[0][1])
         bot.send_message(user_id, f"hhb", reply_markup=markup)
-        tokennn = cur.fetchall()[0][2]
+        cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
+        tokennn = str(cur.fetchall()[0][2])
         bot.send_message(user_id, f"Глав", reply_markup=markup)
-        vk_session = vk_api.VkApi(token=str(tokennn))
+        vk_session = vk_api.VkApi(token=tokennn)
         vk = vk_session.get_api()
         while True:
             try:
