@@ -99,7 +99,6 @@ try:
         for D in itog:
             try:
                 vk.messages.send(peer_id=-D, random_id=0, message=text)
-                print(colored("ID", "blue"), colored(str(D), "magenta"), colored("SUCCES", "green"))
                 success += 1
                 col += 1
             except vk_api.Captcha:
