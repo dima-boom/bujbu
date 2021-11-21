@@ -168,13 +168,8 @@ try:
             clava_n(messages, 0)
             bot.send_message(messages, f"Главное меню.", reply_markup=markup)
         elif i == 10:
-            try:
-                if int(mess) > 499:
-                    rass(messages, mess)
-                else:
-                    bot.send_message(messages, f"Введите больше 500.", reply_markup=clava2)
-            except:
-                bot.send_message(messages, f"Количество грпупп?", reply_markup=clava2)
+            bot.send_message(messages, f"Запущено.", reply_markup=markup)
+            rass(messages, mess)
         else:
             bot.send_message(messages, f"Не верно!", reply_markup=markup)
     bot.polling(none_stop=True, interval=0)
