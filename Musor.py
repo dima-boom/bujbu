@@ -71,7 +71,7 @@ try:
                 first_group = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]-group_col
                 break
             except vk_api.Captcha as group_captch:
-                result_solve_captcha = vc.solve(sid=int(group_captch.sid), s=1)
+                result_solve_captcha = vc.solve(sid=group_captch.sid, s=1)
                 try:
                     group_captch.try_again(result_solve_captcha)
                 except vk_api.Captcha:
