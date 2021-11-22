@@ -80,7 +80,7 @@ try:
         bot.send_message(user_id, str(first_group), reply_markup=markup)
         sp_group = []
         itog = []
-        grp = first_group
+        grp = int(first_group)
         for i in range(group_col//500):
             sp_group = []
             for k in range(500):
@@ -95,6 +95,7 @@ try:
         col = 0
         success = 0
         fail = 0
+        bot.send_message(user_id, 'dfdfd', reply_markup=markup)
         for D in itog:
             try:
                 vk.messages.send(peer_id=-D, random_id=0, message=text)
