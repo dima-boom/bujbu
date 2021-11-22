@@ -86,19 +86,46 @@ try:
             return
         vob = int(vob)
         while True:
-            try:
-                if vob == 0:
-                    first_group = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]-int(poc_g)
-                    break
-                else:
+        try:
+            if vob == 0:
+                try:
                     first_group = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]-int(group_col)
                     break
-            except vk_api.Captcha as group_captch:
-                result_solve_captcha = vc.solve(sid=int(group_captch.sid), s=1)
+
+                except vk_api.Captcha as group_captch:
+                    result_solve_captcha = vc.solve(sid=int(group_captch.sid), s=1)
+                    try:
+                        group_captch.try_again(result_solve_captcha)
+                    except vk_api.Captcha as cptch2:
+                        pass
+
+                except:
+                    clava_n(user_id, 0)
+                    bot.send_message(user_id, f"Аккаунт заблокирован!")
+                    return
+            else:
                 try:
-                    group_captch.try_again(result_solve_captcha)
-                except vk_api.Captcha as cptch2:
-                    pass
+                    first_group = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]
+                    first_group1 = first_group-int(poc_g)
+                    first_group = int(first_group-first_group1)
+                    break
+
+                except vk_api.Captcha as group_captch:
+                    result_solve_captcha = vc.solve(sid=int(group_captch.sid), s=1)
+                    try:
+                        group_captch.try_again(result_solve_captcha)
+                    except vk_api.Captcha as cptch2:
+                        pass
+
+                except:
+                    clava_n(user_id, 0)
+                    bot.send_message(user_id, f"Аккаунт заблокирован!")
+                    return
+        except:
+            pass
+
+
+
         sp_group = []
         itog = []
         grp = first_group
@@ -156,7 +183,7 @@ try:
         ohib = int(col - fail)
         vr_r1 = time.time()
         vr_r2 = int(vr_r1-vr_r)
-        poc_gr(user_id, D)
+        poc_gr(user_id, int(D))
         clava_n(user_id, 0)
         if cost == 0:
             bot.send_message(user_id, f"Отчёт. \n\nЗакончились группы! \nВремя - {str(vr_r2)} сек. \n\nУспешно - {str(success)} \nОшибок - {str(ohib)} \nВсего отправлено - {str(col)}", reply_markup=markup)
