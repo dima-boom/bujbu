@@ -81,6 +81,7 @@ try:
             vk = vk_session.get_api()
             vk.users.get()
         except:
+            clava_n(user_id, 0)
             bot.send_message(user_id, f"Аккаунт заблокирован!")
             return
         vob = int(vob)
