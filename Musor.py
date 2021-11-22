@@ -79,7 +79,7 @@ try:
         sp_group = []
         itog = []
         grp = first_group
-        for i in range(int(group_col)//500):
+        for i in range(group_col//500):
             sp_group = []
             for k in range(500):
                 sp_group.append(str(grp))
