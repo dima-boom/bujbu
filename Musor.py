@@ -180,7 +180,7 @@ try:
                 fail += 1
                 col += 1
             first_group += 1
-        ohib = int(col - fail)
+        ohib = int(col - success)
         vr_r1 = time.time()
         vr_r2 = int(vr_r1-vr_r)
         poc_gr(user_id, int(D))
