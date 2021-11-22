@@ -68,7 +68,7 @@ try:
         vk = vk_session.get_api()
         while True:
             try:
-                first_group = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]-group_col
+                first_group = int(vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"])-int(group_col)
                 break
             except vk_api.Captcha as group_captch:
                 result_solve_captcha = vc.solve(sid=group_captch.sid, s=1)
