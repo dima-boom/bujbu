@@ -1,4 +1,3 @@
-
 try:
     import telebot, vk_api, time, threading, requests, os, psycopg2, random, vk_captchasolver as vc
     from telebot import types
@@ -77,6 +76,8 @@ try:
                     group_captch.try_again(result_solve_captcha)
                 except vk_api.Captcha:
                     pass
+
+        bot.send_message(user_id, str(first_group), reply_markup=markup)
         sp_group = []
         itog = []
         grp = first_group
