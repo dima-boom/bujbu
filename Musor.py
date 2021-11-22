@@ -251,6 +251,7 @@ try:
             clava_n(messages, 0)
             bot.send_message(messages, f"Главное меню.", reply_markup=markup)
         elif i == 10:
+            voob(messages, 0)
             try:
                 if int(mess) > 499:  
                     bot.send_message(messages, f"Успешно.", reply_markup=markup)
