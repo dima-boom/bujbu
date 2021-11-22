@@ -143,7 +143,7 @@ try:
                     continue
         na_b = time.time()
         vr = int(na_b-na_a)
-        bot.send_message(user_id, f"Время сбора информации составило - `"+str(vr)+"`\nДоступно для рассылки - `"+str(len(itog))+"` групп")
+        bot.send_message(user_id, f"Время сбора информации \nсоставило - "+str(vr)+" сек.\nДоступно для рассылки - "+str(len(itog))+" групп")
         col = 0
         success = 0
         fail = 0
