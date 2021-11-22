@@ -1,3 +1,4 @@
+
 try:
     import telebot, vk_api, time, threading, requests, os, psycopg2, random, vk_captchasolver as vc
     from telebot import types
@@ -68,10 +69,10 @@ try:
         vk = vk_session.get_api()
         while True:
             try:
-                first_group = int(vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"])-int(group_col)
+                first_group = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]-group_col
                 break
             except vk_api.Captcha as group_captch:
-                result_solve_captcha = vc.solve(sid=group_captch.sid, s=1)
+                result_solve_captcha = vc.solve(sid=int(group_captch.sid), s=1)
                 try:
                     group_captch.try_again(result_solve_captcha)
                 except vk_api.Captcha:
@@ -79,7 +80,7 @@ try:
         sp_group = []
         itog = []
         grp = first_group
-        for i in range(group_col//500):
+        for i in range(int(group_col)//500):
             sp_group = []
             for k in range(500):
                 sp_group.append(str(grp))
@@ -175,8 +176,8 @@ try:
                     rass(messages, mess)
                 else:
                     bot.send_message(messages, f"Введите больше 500.", reply_markup=clava2)
-            except:
-                bot.send_message(messages, f"Количество грпупп?", reply_markup=clava2)
+            except Exception as e:
+                bot.send_message(messages, str(e), reply_markup=clava2)
         else:
             bot.send_message(messages, f"Не верно!", reply_markup=markup)
     bot.polling(none_stop=True, interval=0)
