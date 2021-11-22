@@ -1,5 +1,5 @@
 try:
-    import telebot, vk_api, time, threading, requests, os, psycopg2, random
+    import telebot, vk_api, time, threading, requests, os, psycopg2, random, vk_captchasolver as vc
     from telebot import types
 
     con = psycopg2.connect(
@@ -59,30 +59,27 @@ try:
             pass
 
     def rass(user_id, group_col):
-        bot.send_message(user_id, f"buvv", reply_markup=markup)
         cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
-        bot.send_message(user_id, f"1. J", reply_markup=markup)
-        mmk = str(cur.fetchall()[0][1])
-        bot.send_message(user_id, f"hhb", reply_markup=markup)
+        text = cur.fetchall()[0][1]
         cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
-        tokennn = str(cur.fetchall()[0][2])
-        bot.send_message(user_id, f"Глав", reply_markup=markup)
-        vk_session = vk_api.VkApi(token=tokennn)
+        token = cur.fetchall()[0][2]
+
+        vk_session = vk_api.VkApi(token=token)
         vk = vk_session.get_api()
         while True:
             try:
-                first_group = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]-group_col
+                first_group = int(vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"])-int(group_col)
                 break
             except vk_api.Captcha as group_captch:
                 result_solve_captcha = vc.solve(sid=int(group_captch.sid), s=1)
                 try:
                     group_captch.try_again(result_solve_captcha)
-                except vk_api.Captcha as cptch2:
-                    pass
+            except vk_api.Captcha as cptch2:
+                pass
         sp_group = []
         itog = []
         grp = first_group
-        for i in range(group_col//500):
+        for i in range(int(group_col)//500):
             sp_group = []
             for k in range(500):
                 sp_group.append(str(grp))
@@ -96,17 +93,17 @@ try:
         col = 0
         success = 0
         fail = 0
+        print('fgfg')
         for D in itog:
-            bot.send_message(user_id, f"1. J", reply_markup=markup)
             try:
-                vk.messages.send(peer_id=-D, random_id=0, message=mmk)
+                vk.messages.send(peer_id=-D, random_id=0, message=text)
                 success += 1
                 col += 1
             except vk_api.Captcha:
                 cycle = True
                 while cycle:
                     try:
-                        vk.messages.send(peer_id=-D, random_id=0, message=mmk)
+                        vk.messages.send(peer_id=-D, random_id=0, message=text)
                     except vk_api.Captcha as cptch:
                         result_solve_captcha = vc.solve(sid=int(cptch.sid), s=1)
                         try:
@@ -117,7 +114,7 @@ try:
                     except:
                         pass
         clava_n(user_id, 0)
-        bot.send_message(messages, f"Отчёт. \n\nУспешно - {str(success)} \nВсего отправлено - {str(col-1)}", reply_markup=markup)
+        bot.send_message(user_id, f"Отчёт. \n\nУспешно - {str(success)} \nВсего отправлено - {str(col)}", reply_markup=markup)
 
 
     @bot.message_handler()
@@ -172,10 +169,17 @@ try:
             clava_n(messages, 0)
             bot.send_message(messages, f"Главное меню.", reply_markup=markup)
         elif i == 10:
-            bot.send_message(messages, f"Запущено.", reply_markup=markup)
-            rass(messages, mess)
+            try:
+                if int(mess) > 499:
+                    bot.send_message(messages, f"Успешно.", reply_markup=markup)
+                    clava_n(messages, 11)
+                    rass(messages, mess)
+                else:
+                    bot.send_message(messages, f"Введите больше 500.", reply_markup=clava2)
+            except:
+                bot.send_message(messages, f"Количество грпупп?", reply_markup=clava2)
         else:
             bot.send_message(messages, f"Не верно!", reply_markup=markup)
     bot.polling(none_stop=True, interval=0)
 except:
-    os.system('python Musor.py')
+    os.system('python bot.py')
