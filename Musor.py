@@ -65,6 +65,7 @@ def rass(user_id, group_col):
 
     vk_session = vk_api.VkApi(token=token)
     vk = vk_session.get_api()
+    bot.send_message(messages, f"ggg", reply_markup=clava2)
     while True:
         try:
             first_group = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]-group_col
@@ -75,6 +76,7 @@ def rass(user_id, group_col):
                 group_captch.try_again(result_solve_captcha)
             except vk_api.Captcha:
                 pass
+    bot.send_message(messages, f"Вggg.", reply_markup=clava2)
     sp_group = []
     itog = []
     grp = first_group
