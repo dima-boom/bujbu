@@ -46,6 +46,8 @@ try:
     c15 = types.KeyboardButton('Ввод')
     c16 = types.KeyboardButton('Последняя')
     clava4.add(c15, c16)
+    clava4.add(c13)
+
     def clava(send):
         global i
         cur.execute(f"SELECT clava FROM tab WHERE id = '{send}'")
@@ -105,11 +107,10 @@ try:
                         return
                 else:
                     try:
-                        first_group = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]
-                        first_group1 = first_group-int(poc_g)
-                        first_group = int(first_group-first_group1)
+                        first_group23 = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]
+                        first_group = int(poc_g)
+                        group_col = int(first_group23 - first_group)
                         break
-
                     except vk_api.Captcha as group_captch:
                         result_solve_captcha = vc.solve(sid=int(group_captch.sid), s=1)
                         try:
@@ -180,7 +181,7 @@ try:
                 fail += 1
                 col += 1
             first_group += 1
-        ohib = int(col - success)
+        ohib = int(col - fail)
         vr_r1 = time.time()
         vr_r2 = int(vr_r1-vr_r)
         poc_gr(user_id, int(D))
@@ -202,6 +203,12 @@ try:
         elif mess[0:11] == 'новый текст':
             clava_n(messages, 2)
             bot.send_message(messages, f"Введите текст.", reply_markup=clava2)
+        elif mess == '/new':
+            clava_n(messages, 0)
+            bot.send_message(messages, f"Перезапуск.", reply_markup=markup)
+        elif mess == 'отмена' and i != 0:
+            clava_n(messages, 0)
+            bot.send_message(messages, f"Главное меню.", reply_markup=markup)
         elif i == 2:
             cur.execute(f"""UPDATE tab SET txt = '{message.text}' WHERE id = {messages}""")
             con.commit()
@@ -244,14 +251,7 @@ try:
             clava_n(messages, 11)
             rass(messages, 1)
             bot.send_message(messages, f"Успешно.", reply_markup=markup)
-        elif mess == '/new':
-            clava_n(messages, 0)
-            bot.send_message(messages, f"Перезапуск.", reply_markup=markup)
-        elif mess == 'отмена' and i != 0:
-            clava_n(messages, 0)
-            bot.send_message(messages, f"Главное меню.", reply_markup=markup)
         elif i == 10:
-            voob(messages, 0)
             try:
                 if int(mess) > 499:  
                     bot.send_message(messages, f"Успешно.", reply_markup=markup)
