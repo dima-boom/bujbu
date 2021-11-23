@@ -247,10 +247,10 @@ try:
             clava_n(messages, 10)
             bot.send_message(messages, f"Введите Количество грпупп:", reply_markup=clava2)
         elif mess[0:9] == 'последняя' and i == 7:
+            bot.send_message(messages, f"Успешно.", reply_markup=markup)
             voob(messages, 1)
             clava_n(messages, 11)
             rass(messages, 1)
-            bot.send_message(messages, f"Успешно.", reply_markup=markup)
         elif i == 10:
             try:
                 if int(mess) > 499:  
