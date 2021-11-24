@@ -245,6 +245,7 @@ try:
                 bot.send_message(messages, f"Уже запущено.", reply_markup=markup)
         elif mess[0:4] == 'ввод' and i == 7:
             clava_n(messages, 10)
+            voob(messages, 0)
             bot.send_message(messages, f"Введите Количество грпупп:", reply_markup=clava2)
         elif mess[0:9] == 'последняя' and i == 7:
             voob(messages, 1)
