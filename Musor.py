@@ -28,7 +28,6 @@ try:
 
     bot = telebot.TeleBot('5020584672:AAF3rCwCjvOhzanGdDPn6lkM7ZiaKSeKTkI')
 
-    print('Работает!')
 
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     item1 = types.KeyboardButton('Запуск')
