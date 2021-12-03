@@ -26,7 +26,7 @@ try:
     def extract_arg2(arg2):
         return arg2.split()[2]
 
-    bot = telebot.TeleBot('1639945945:AAFCziHtYMHdGdQAkM07CKCmDLd1QNVT-xw')
+    bot = telebot.TeleBot('5020584672:AAF3rCwCjvOhzanGdDPn6lkM7ZiaKSeKTkI')
 
     print('Работает!')
 
