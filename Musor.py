@@ -11,7 +11,7 @@ try:
     )
     cur = con.cursor()
     cur.execute('''CREATE TABLE IF NOT EXISTS tab(
-        id INT,
+        id REAL,
         txt TEXT,
         tok TEXT,
         clava INT,
@@ -63,7 +63,7 @@ try:
         con.commit()
     def polz(send):
         # Добавление записи
-        cur.execute(f"SELECT id FROM tab WHERE id = '{send}'")
+        cur.execute(f"SELECT id FROM tab WHERE id = {send}")
         if str(cur.fetchall()) == '[]':
             cur.execute(f"""INSERT INTO tab (id, txt, tok, clava, pos_gr, vobs) VALUES ({send}, 'Текст', 'Токен', 0, 0, 0);""")
             con.commit()
