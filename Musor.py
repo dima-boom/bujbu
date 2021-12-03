@@ -11,7 +11,7 @@ try:
     )
     cur = con.cursor()
     cur.execute('''CREATE TABLE IF NOT EXISTS tab(
-        id INTEGER,
+        id BIGINT,
         txt TEXT,
         tok TEXT,
         clava INT,
