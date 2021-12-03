@@ -26,7 +26,7 @@ try:
     def extract_arg2(arg2):
         return arg2.split()[2]
 
-    bot = telebot.TeleBot('5020584672:AAF3rCwCjvOhzanGdDPn6lkM7ZiaKSeKTkI')
+    bot = telebot.TeleBot('5020584672:AAGKDwapVosl-A5MUo-Qoa_wTIFPSHAKCn4')
 
 
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
