@@ -186,9 +186,9 @@ try:
         poc_gr(user_id, int(D))
         clava_n(user_id, 0)
         if cost == 0:
-            bot.send_message(user_id, f"Отчёт. \n\nЗакончились группы! \nВремя - {str(vr_r2)} сек. \n\nУспешно - {str(success)} \nОшибок - {str(ohib)} \nВсего отправлено - {str(col)}", reply_markup=markup)
+            bot.send_message(user_id, f"Отчёт. \n\nЗакончились группы! \nВремя - {str(vr_r2)} сек. \n\nУспешно - {str(success)} \nОшибок - {str(fail)} \nВсего отправлено - {str(col)}", reply_markup=markup)
         else:
-            bot.send_message(user_id, f"Отчёт. \n\nАккаунт заблокирован! \nВремя - {str(vr_r2)} сек. \nУспешно - {str(success)} \nОшибок - {str(ohib)} \nВсего отправлено - {str(col)}", reply_markup=markup)
+            bot.send_message(user_id, f"Отчёт. \n\nАккаунт заблокирован! \nВремя - {str(vr_r2)} сек. \nУспешно - {str(success)} \nОшибок - {str(fail)} \nВсего отправлено - {str(col)}", reply_markup=markup)
 
 
     @bot.message_handler()
