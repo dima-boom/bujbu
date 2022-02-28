@@ -3,10 +3,10 @@ try:
     from telebot import types
 
     con = psycopg2.connect(
-      database="ddvum9823aqf51", 
-      user="vgwioealwlxtml", 
-      password="d2ed6fd4af5282774147a15500f4e9fdcb9ca3fa2f2d592943138f0dd8645798", 
-      host="ec2-34-254-120-2.eu-west-1.compute.amazonaws.com", 
+      database="d4c41h4i7du8mq", 
+      user="svxwcgxnatvdtk", 
+      password="1a8a2996f756536aaf66bdbc9a1ff9f67d97961e6007fc0c652117796470e4ca", 
+      host="ec2-52-208-145-55.eu-west-1.compute.amazonaws.com", 
       port="5432"
     )
     cur = con.cursor()
