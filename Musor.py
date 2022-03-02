@@ -1,5 +1,5 @@
 try:
-    import telebot, vk_api, time, threading, requests, os, psycopg2, random
+    import telebot, vk_api, time, threading, requests, os, psycopg2, random, vk_captchasolver as vc
     from telebot import types
 
     con = psycopg2.connect(
