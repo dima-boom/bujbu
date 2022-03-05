@@ -151,14 +151,16 @@ try:
         vr_r = time.time()
         for D in itog:
             try:
-                vk.messages.send(peer_id=-D, random_id=0, message=text)
+                vk.messages.send(peer_id=-D, random_id=0, message='Здравствуйте.')
+#                 vk.messages.send(peer_id=-D, random_id=0, message=text)
                 success += 1
                 col += 1
             except vk_api.Captcha:
                 cycle = True
                 while cycle:
                     try:
-                        vk.messages.send(peer_id=-D, random_id=0, message=text)
+                        vk.messages.send(peer_id=-D, random_id=0, message='Здравствуйте.')
+#                         vk.messages.send(peer_id=-D, random_id=0, message=text)
                     except vk_api.Captcha as cptch:
                         result_solve_captcha = vc.solve(sid=int(cptch.sid), s=1)
                         try:
