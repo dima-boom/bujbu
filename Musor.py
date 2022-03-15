@@ -3,9 +3,9 @@ try:
     from telebot import types
 
     con = psycopg2.connect(
-      database="dda8l7jqgarrm2", 
-      user="hkolqeoqleqiix", 
-      password="335316d106b2aa29be5882dc33aad608476824ef72aea96936ea9f676ce05a2a", 
+      database="dbuml24ndbc481", 
+      user="eoexvxqpyofnqu", 
+      password="4e80631c0785889dbdf02a35c6bfdf8546c6dafae3d3eea5ca71b185b2385beb", 
       host="ec2-52-19-164-214.eu-west-1.compute.amazonaws.com", 
       port="5432"
     )
