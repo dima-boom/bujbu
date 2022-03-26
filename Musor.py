@@ -1,12 +1,14 @@
 try:
     import telebot, vk_api, time, threading, requests, os, psycopg2, random, vk_captchasolver as vc
     from telebot import types
-
+    from vk_api.utils import get_random_id
+    from vk_api.longpoll import VkLongPoll, VkEventType
+    ot = 0
     con = psycopg2.connect(
-      database="d77ttia8mrqai9", 
-      user="gymvhhkwhsrkhy", 
-      password="cea59a9adb86593c751662bc324b82125740beff39f13744f8a4e887ad68db6d", 
-      host="ec2-63-32-248-14.eu-west-1.compute.amazonaws.com", 
+      database="dd17n15a2jdp9n", 
+      user="dllxndxkubyzcs", 
+      password="6ddc31745040c8e34e57bc68ef763f006e1e4669bb6bf837e5eb3c24afdc552e", 
+      host="ec2-176-34-211-0.eu-west-1.compute.amazonaws.com", 
       port="5432"
     )
     cur = con.cursor()
@@ -26,7 +28,7 @@ try:
     def extract_arg2(arg2):
         return arg2.split()[2]
 
-    bot = telebot.TeleBot('5020584672:AAGKDwapVosl-A5MUo-Qoa_wTIFPSHAKCn4')
+    bot = telebot.TeleBot('5020584672:AAGT1xRrLMPWGJbkfbv9KWNsKdqc9qktdRs')
 
 
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -70,6 +72,64 @@ try:
         else:
             pass
 
+
+    def otvet(user_id):
+        time.sleep(2)
+        global ot
+        cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
+        vvvb = cur.fetchall()
+        text = vvvb[0][1]
+        token = vvvb[0][2]
+        poc_g = vvvb[0][4]
+        vob = vvvb[0][5]
+        authorize = vk_api.VkApi(token=token)
+        longpoll = VkLongPoll(authorize)
+        assd = []
+        zx = 0
+        for event in longpoll.listen():
+            if event.type == VkEventType.MESSAGE_NEW and event.text:
+                reseived_message = event.text.lower()
+                sender = event.peer_id
+                if event.to_me:
+                    if sender in assd:
+                        continue
+                    zx+=1
+                    try:
+                        authorize.get_api().messages.send(peer_id=sender, message=str(text), random_id=0)
+                        assd.append(sender)
+                    except vk_api.Captcha:
+                        cycle = True
+                        while cycle:
+                            try:
+                                authorize.get_api().messages.send(peer_id=sender, message=str(text), random_id=0)
+                                assd.append(sender)
+                            except vk_api.Captcha as cptch:
+                                result_solve_captcha = vc.solve(sid=int(cptch.sid), s=1)
+                                try:
+                                    cptch.try_again(result_solve_captcha)
+                                    cycle = False
+                                except vk_api.Captcha as cptch2:
+                                    pass
+                            except vk_api.ApiError:
+                                try:
+                                    vk_session = vk_api.VkApi(token=token)
+                                    vk = vk_session.get_api()
+                                    vk.status.get()
+                                except vk_api.ApiError:
+                                    ot = 0
+                                    break
+
+                    except vk_api.ApiError:
+                        try:
+                            vk_session = vk_api.VkApi(token=token)
+                            vk = vk_session.get_api()
+                            vk.status.get()
+                        except vk_api.ApiError:
+                            ot = 0
+                            break
+                    except:
+                        pass
+
     def rass(user_id, group_col):
         cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
         vvvb = cur.fetchall()
@@ -90,7 +150,7 @@ try:
             try:
                 if vob == 0:
                     try:
-                        first_group = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]-int(group_col)
+                        first_group = vk.groups.create(title="Автосервис "+str(random.randint(1000, 9999)))["id"]-int(group_col)
                         break
 
                     except vk_api.Captcha as group_captch:
@@ -106,7 +166,7 @@ try:
                         return
                 else:
                     try:
-                        first_group23 = vk.groups.create(title="Ремонт авто "+str(random.randint(1000, 9999)))["id"]
+                        first_group23 = vk.groups.create(title="Автосервис "+str(random.randint(1000, 9999)))["id"]
                         first_group = int(poc_g)
                         group_col = int(first_group23 - first_group)
                         break
@@ -124,74 +184,81 @@ try:
             except:
                 pass
 
-
-
-        sp_group = []
-        itog = []
-        grp = first_group
-        na_a = time.time()
-        for i in range(int(group_col)//500):
             sp_group = []
-            for k in range(500):
-                sp_group.append(str(grp))
-                grp+=1
-            new_sp = vk.groups.getById(group_ids=sp_group, fields="can_message")
-            for j in new_sp:
-                if j["can_message"] == 1:
-                    itog.append(int(j['id']))
-                else:
-                    continue
-        na_b = time.time()
-        vr = int(na_b-na_a)
-        bot.send_message(user_id, f"Время сбора информации \nсоставило - "+str(vr)+" сек.\nДоступно для рассылки - "+str(len(itog))+" групп")
-        col = 0
-        success = 0
-        fail = 0
-        cost = 0
-        vr_r = time.time()
-        for D in itog:
-            try:
-                vk.messages.send(peer_id=-D, random_id=0, message='Здравствуйте.')
-                success += 1
-                col += 1
-            except vk_api.Captcha:
-                cycle = True
-                while cycle:
-                    try:
-                        vk.messages.send(peer_id=-D, random_id=0, message='Здравствуйте.')
-                    except vk_api.Captcha as cptch:
-                        result_solve_captcha = vc.solve(sid=int(cptch.sid), s=1)
-                        try:
-                            cptch.try_again(result_solve_captcha)
-                            cycle = False
-                        except vk_api.Captcha as cptch2:
-                            pass
-                    except:
-                        pass
-            except vk_api.ApiError:
+            itog = []
+            grp = first_group
+            na_a = time.time()
+            for i in range(int(group_col)//500):
+                sp_group = []
+                for k in range(500):
+                    sp_group.append(str(grp))
+                    grp+=1
+                new_sp = vk.groups.getById(group_ids=sp_group, fields="can_message")
+                for j in new_sp:
+                    if j["can_message"] == 1:
+                        itog.append(int(j['id']))
+                    else:
+                        continue
+            na_b = time.time()
+            vr = int(na_b-na_a)
+            bot.send_message(user_id, f"Время сбора информации \nсоставило - "+str(vr)+" сек.\nДоступно для рассылки - "+str(len(itog))+" групп")
+            col = 0
+            success = 0
+            fail = 0
+            cost = 0
+            vr_r = time.time()
+            for D in itog:
                 try:
-                    vk_session = vk_api.VkApi(token=token)
-                    vk = vk_session.get_api()
-                    vk.status.get()
+                    vk.messages.send(peer_id=-D, random_id=0, message='Здравствуйте.')
+                    success += 1
+                    col += 1
+                except vk_api.Captcha:
+                    cycle = True
+                    while cycle:
+                        try:
+                            vk.messages.send(peer_id=-D, random_id=0, message='Здравствуйте.')
+                        except vk_api.Captcha as cptch:
+                            result_solve_captcha = vc.solve(sid=int(cptch.sid), s=1)
+                            try:
+                                cptch.try_again(result_solve_captcha)
+                                cycle = False
+                            except vk_api.Captcha as cptch2:
+                                pass
+                        except vk_api.ApiError:
+                            try:
+                                vk_session = vk_api.VkApi(token=token)
+                                vk = vk_session.get_api()
+                                vk.status.get()
+                            except vk_api.ApiError:
+                                cost = 1
+                                break
+                            except:
+                                pass
                 except vk_api.ApiError:
-                    cost = 1
-                    break
-            except:
-                fail += 1
-            first_group += 1
-        ohib = int(col - success)
-        vr_r1 = time.time()
-        vr_r2 = int(vr_r1-vr_r)
-        poc_gr(user_id, int(D))
-        clava_n(user_id, 0)
-        if cost == 0:
-            bot.send_message(user_id, f"Отчёт. \n\nЗакончились группы! \nВремя - {str(vr_r2)} сек. \n\nУспешно - {str(success)} \nОшибок - {str(ohib)} \nВсего отправлено - {str(col)}", reply_markup=markup)
-        else:
-            bot.send_message(user_id, f"Отчёт. \n\nАккаунт заблокирован! \nВремя - {str(vr_r2)} сек. \nУспешно - {str(success)} \nОшибок - {str(ohib)} \nВсего отправлено - {str(col)}", reply_markup=markup)
+                    try:
+                        vk_session = vk_api.VkApi(token=token)
+                        vk = vk_session.get_api()
+                        vk.status.get()
+                    except vk_api.ApiError:
+                        cost = 1
+                        break
+                except:
+                    fail += 1
+                    col += 1
+                first_group += 1
+            vr_r1 = time.time()
+            vr_r2 = int(vr_r1-vr_r)
+            poc_gr(user_id, int(D))
+            clava_n(user_id, 0)
+            if cost == 0:
+                bot.send_message(user_id, f"Отчёт. \n\nЗакончились группы! \nВремя - {str(vr_r2)} сек. \n\nУспешно - {str(success)} \nОшибок - {str(fail)} \nВсего отправлено - {str(col)}", reply_markup=markup)
+            else:
+                bot.send_message(user_id, f"Отчёт. \n\nАккаунт заблокирован! \nВремя - {str(vr_r2)} сек. \nУспешно - {str(success)} \nОшибок - {str(fail)} \nВсего отправлено - {str(col)}", reply_markup=markup)
 
 
     @bot.message_handler()
     def get_text_messages(message):
+        global ot
         messages = message.from_user.id
         mess = message.text.lower()
         polz(messages)
@@ -255,7 +322,12 @@ try:
                 if int(mess) > 499:  
                     bot.send_message(messages, f"Успешно.", reply_markup=markup)
                     clava_n(messages, 11)
-                    rass(messages, mess)
+                    bn = threading.Thread(target=rass, args=(messages, mess))
+                    bn.start()
+                    if ot == 0:
+                        bn2 = threading.Thread(target=otvet, args=(messages,))
+                        bn2.start()
+                        ot = 1
                 else:
                     bot.send_message(messages, f"Введите больше 500.", reply_markup=clava2)
             except:
