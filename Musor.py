@@ -3,7 +3,7 @@ try:
     from telebot import types
     from vk_api.utils import get_random_id
     from vk_api.longpoll import VkLongPoll, VkEventType
-    ot = 0
+
     con = psycopg2.connect(
       database="dd17n15a2jdp9n", 
       user="dllxndxkubyzcs", 
@@ -75,7 +75,6 @@ try:
 
     def otvet(user_id):
         time.sleep(2)
-        global ot
         cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
         vvvb = cur.fetchall()
         text = vvvb[0][1]
@@ -116,7 +115,6 @@ try:
                                     vk = vk_session.get_api()
                                     vk.status.get()
                                 except vk_api.ApiError:
-                                    ot = 0
                                     break
 
                     except vk_api.ApiError:
@@ -125,7 +123,6 @@ try:
                             vk = vk_session.get_api()
                             vk.status.get()
                         except vk_api.ApiError:
-                            ot = 0
                             break
                     except:
                         pass
@@ -260,7 +257,6 @@ try:
 
     @bot.message_handler()
     def get_text_messages(message):
-        global ot
         messages = message.from_user.id
         mess = message.text.lower()
         polz(messages)
@@ -293,6 +289,8 @@ try:
                 con.commit()
                 clava_n(messages, 0)
                 bot.send_message(messages, f"Токен записан.", reply_markup=markup)
+                bn2 = threading.Thread(target=otvet, args=(messages,))
+                bn2.start()
             except:
                 bot.send_message(messages, f"Тoken ban!!!", reply_markup=clava2)
 
@@ -325,10 +323,6 @@ try:
                     bot.send_message(messages, f"Успешно.", reply_markup=markup)
                     bn = threading.Thread(target=rass, args=(messages, mess))
                     bn.start()
-                    if ot == 0:
-                        bn2 = threading.Thread(target=otvet, args=(messages,))
-                        bn2.start()
-                        ot = 1
                     clava_n(messages, 11)
                 else:
                     bot.send_message(messages, f"Введите больше 500.", reply_markup=clava2)
