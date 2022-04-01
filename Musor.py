@@ -8,7 +8,7 @@ try:
       database="d4esaae7g84nni", 
       user="npokykqojopfow", 
       password="341e1b4f53490c6f9098ba193c0551f30b1b730ab3c173f1649f03526aad52f0", 
-      host="ec2-176-34-211-0.eu-west-1.compute.amazonaws.com", 
+      host="ec2-99-80-170-190.eu-west-1.compute.amazonaws.com", 
       port="5432"
     )
     cur = con.cursor()
