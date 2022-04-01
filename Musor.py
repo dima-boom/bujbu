@@ -7,7 +7,7 @@ try:
     con = psycopg2.connect(
       database="d4esaae7g84nni", 
       user="npokykqojopfow", 
-      password="password="6ddc31745040c8e34e57bc68ef763f006e1e4669bb6bf837e5eb3c24afdc552e", 
+      password="6ddc31745040c8e34e57bc68ef763f006e1e4669bb6bf837e5eb3c24afdc552e", 
       host="ec2-176-34-211-0.eu-west-1.compute.amazonaws.com", 
       port="5432"
     )
