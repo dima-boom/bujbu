@@ -5,9 +5,9 @@ try:
     from vk_api.longpoll import VkLongPoll, VkEventType
 
     con = psycopg2.connect(
-      database="d4esaae7g84nni", 
-      user="npokykqojopfow", 
-      password="341e1b4f53490c6f9098ba193c0551f30b1b730ab3c173f1649f03526aad52f0", 
+      database="d3u6r9i540u89p", 
+      user="qirtxftgprnkvj", 
+      password="cfd510414ce190e7332c18ec411cd87e881fb1a28357d4c9def6c8020a58982c", 
       host="ec2-99-80-170-190.eu-west-1.compute.amazonaws.com", 
       port="5432"
     )
