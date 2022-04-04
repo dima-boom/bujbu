@@ -5,10 +5,10 @@ try:
     from vk_api.longpoll import VkLongPoll, VkEventType
 
     con = psycopg2.connect(
-      database="d3u6r9i540u89p", 
-      user="qirtxftgprnkvj", 
-      password="cfd510414ce190e7332c18ec411cd87e881fb1a28357d4c9def6c8020a58982c", 
-      host="ec2-99-80-170-190.eu-west-1.compute.amazonaws.com", 
+      database="d5s0d5m8mv9e6h", 
+      user="gooisunawvsbxd", 
+      password="beafd29432e407593c9c57863a488a2af5bb866c342ae54efe42037dc561c542", 
+      host="ec2-34-246-227-219.eu-west-1.compute.amazonaws.com", 
       port="5432"
     )
     cur = con.cursor()
