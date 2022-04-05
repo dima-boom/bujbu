@@ -85,11 +85,15 @@ try:
         longpoll = VkLongPoll(authorize)
         assd = []
         zx = 0
+        op = 0
         for event in longpoll.listen():
             if event.type == VkEventType.MESSAGE_NEW and event.text:
                 reseived_message = event.text.lower()
                 sender = event.peer_id
+                if op == 0:
+                    continue
                 if event.to_me:
+                    op = 1
                     if sender in assd:
                         continue
                     zx+=1
@@ -128,7 +132,6 @@ try:
                         pass
 
     def rass(user_id, group_col):
-        time.sleep(1)
         cur.execute(f"SELECT * FROM tab WHERE id = '{user_id}'")
         vvvb = cur.fetchall()
         text = vvvb[0][1]
